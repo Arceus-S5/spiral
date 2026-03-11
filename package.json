@@ -1,0 +1,95 @@
+{
+  "name": "spiral",
+  "version": "1.0.0",
+  "description": "高機能macOSブラウザ - Arc風デザイン",
+  "main": "dist/main/index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:renderer\" \"npm run dev:main\"",
+    "dev:renderer": "vite --config vite.renderer.config.ts",
+    "dev:main": "tsc -p tsconfig.main.json --watch",
+    "build": "npm run clean && npm run build:renderer && npm run build:main",
+    "build:renderer": "vite build --config vite.renderer.config.ts",
+    "build:main": "tsc -p tsconfig.main.json",
+    "pack": "npm run build && electron-builder --mac",
+    "start": "electron .",
+    "lint": "eslint src --ext .ts,.tsx",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist",
+    "release": "npm run build && electron-builder --mac --config.mac.identity=null",
+    "release:dmg": "npm run build && electron-builder --mac dmg",
+    "release:publish": "npm run build && electron-builder --mac --publish always --config.mac.identity=null",
+    "release:local": "npm run build && electron-builder --mac --config.mac.identity=null"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "zustand": "^4.4.7",
+    "framer-motion": "^10.16.16",
+    "clsx": "^2.1.0",
+    "tailwind-merge": "^2.2.0",
+    "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-tooltip": "^1.0.7",
+    "@radix-ui/react-context-menu": "^2.1.5",
+    "@radix-ui/react-popover": "^1.0.7",
+    "@radix-ui/react-scroll-area": "^1.0.5",
+    "@radix-ui/react-separator": "^1.0.3",
+    "@radix-ui/react-switch": "^1.0.3",
+    "@radix-ui/react-tabs": "^1.0.4",
+    "lucide-react": "^0.300.0",
+    "cmdk": "^0.2.0",
+    "date-fns": "^3.0.6",
+    "fuse.js": "^7.0.0",
+    "electron-store": "^8.1.0",
+    "uuid": "^9.0.0",
+    "electron-updater": "^6.1.7"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.47",
+    "@types/react-dom": "^18.2.18",
+    "@types/node": "^20.11.0",
+    "@types/uuid": "^9.0.7",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.16",
+    "concurrently": "^8.2.2",
+    "electron-builder": "^24.9.1",
+    "postcss": "^8.4.33",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.11",
+    "electron": "^28.0.0"
+  },
+  "build": {
+    "appId": "com.arcbrowser.macos",
+    "productName": "Spiral",
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        "zip"
+      ],
+      "icon": "public/icon.icns",
+      "darkModeSupport": true,
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false
+    },
+    "dmg": {
+      "title": "Spiral"
+    },
+    "files": [
+      "dist/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "public",
+      "output": "release"
+    },
+    "asar": true,
+    "publish": {
+      "provider": "github",
+      "owner": "hiroki-s5",
+      "repo": "spiral",
+      "releaseType": "release"
+    }
+  },
+  "author": "hiroki"
+}

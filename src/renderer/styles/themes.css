@@ -1,0 +1,333 @@
+/* ============================================================
+   Spiral Browser — Theme System (Electron 28 compatible)
+   ============================================================ */
+
+:root, .theme-light {
+  --space-color: #6B4FE8;
+  --space-color-rgb: 107, 79, 232;
+  --space-color-2: #4F35C7;
+  --space-glow: rgba(107, 79, 232, 0.22);
+
+  /* Sidebar: Arc-style gradient — static colors (oklch relative syntax not supported in Chromium 120) */
+  --sidebar-bg: linear-gradient(170deg, #d8d0f8, #ccc3f4, #c0b5f0, #ccc3f4, #d8d0f8);
+  --sidebar-border: rgba(0,0,0,0.06);
+  --sidebar-text: rgba(20, 10, 45, 0.6);
+  --sidebar-text-active: rgba(10, 5, 30, 0.9);
+  --sidebar-hover: rgba(0,0,0,0.055);
+  --sidebar-active: rgba(255,255,255,0.72);
+  --sidebar-width: 248px;
+
+  /* Browser chrome */
+  --browser-bg: #ffffff;
+  --browser-border: rgba(0,0,0,0.07);
+  --toolbar-bg: rgba(252,251,255,0.97);
+
+  /* Tabs */
+  --tab-text: rgba(20, 10, 45, 0.5);
+  --tab-hover: rgba(0,0,0,0.055);
+  --tab-active-bg: rgba(255,255,255,0.85);
+  --tab-active-text: rgba(10, 5, 30, 0.88);
+  --tab-active-shadow: 0 1px 6px rgba(0,0,0,0.1), inset 0 0 0 0.5px rgba(255,255,255,0.8);
+
+  --pinned-tab-bg: rgba(255,255,255,0.52);
+  --pinned-tab-hover: rgba(255,255,255,0.88);
+
+  /* URL bar */
+  --input-bg: rgba(0,0,0,0.05);
+  --input-bg-focus: rgba(255,255,255,0.95);
+  --input-border: transparent;
+  --url-bar-bg: rgba(255,255,255,0.7);
+  --url-bar-focus-bg: #ffffff;
+  --url-bar-border: rgba(0,0,0,0.09);
+
+  /* Accent */
+  --accent-primary: #6B4FE8;
+  --accent-secondary: #4F35C7;
+  --accent-glow: rgba(107, 79, 232, 0.22);
+
+  /* Text */
+  --text-primary: #130d26;
+  --text-secondary: #352660;
+  --text-muted: #9b8ec0;
+
+  /* UI */
+  --border: rgba(0,0,0,0.07);
+  --glass-bg: rgba(255,255,255,0.78);
+  --glass-border: rgba(255,255,255,0.55);
+  --overlay-bg: rgba(15,8,35,0.3);
+
+  --scrollbar-thumb: rgba(0,0,0,0.11);
+  --scrollbar-thumb-hover: rgba(0,0,0,0.2);
+  --split-divider: rgba(0,0,0,0.07);
+  --badge-bg: #ef4444;
+  --badge-text: #fff;
+  --favicon-placeholder-bg: rgba(0,0,0,0.07);
+  --favicon-placeholder-text: #9b8ec0;
+
+  /* New Tab */
+  --new-tab-bg: linear-gradient(145deg, #ede9fc, #e6e0fa, #ddd6f8, #e6e0fa, #ede9fc);
+
+  /* Command Palette */
+  --cmdk-bg: rgba(250, 248, 255, 0.99);
+  --cmdk-border: rgba(0,0,0,0.08);
+  --cmdk-input-bg: rgba(0,0,0,0.045);
+  --cmdk-item-hover: rgba(107, 79, 232, 0.08);
+  --cmdk-item-active: rgba(107, 79, 232, 0.14);
+  --cmdk-shadow: 0 20px 60px rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.05);
+}
+
+.theme-dark {
+  --space-color: #9B7FF4;
+  --space-color-rgb: 155, 127, 244;
+  --space-color-2: #7C5CE8;
+  --space-glow: rgba(155, 127, 244, 0.2);
+
+  --sidebar-bg: linear-gradient(170deg, #1e1535, #170f2b, #130a24, #170f2b, #1e1535);
+  --sidebar-border: rgba(255,255,255,0.05);
+  --sidebar-text: rgba(220, 210, 245, 0.55);
+  --sidebar-text-active: rgba(240, 235, 255, 0.95);
+  --sidebar-hover: rgba(255,255,255,0.07);
+  --sidebar-active: rgba(255,255,255,0.11);
+  --sidebar-width: 248px;
+
+  --browser-bg: #0e0b18;
+  --browser-border: rgba(255,255,255,0.06);
+  --toolbar-bg: rgba(14, 11, 24, 0.99);
+
+  --tab-text: rgba(200, 185, 235, 0.48);
+  --tab-hover: rgba(255,255,255,0.06);
+  --tab-active-bg: rgba(255,255,255,0.09);
+  --tab-active-text: rgba(240, 235, 255, 0.95);
+  --tab-active-shadow: 0 1px 6px rgba(0,0,0,0.5), inset 0 0 0 0.5px rgba(255,255,255,0.1);
+
+  --pinned-tab-bg: rgba(255,255,255,0.07);
+  --pinned-tab-hover: rgba(255,255,255,0.14);
+
+  --input-bg: rgba(255,255,255,0.07);
+  --input-bg-focus: rgba(255,255,255,0.11);
+  --input-border: transparent;
+  --url-bar-bg: rgba(255,255,255,0.07);
+  --url-bar-focus-bg: rgba(255,255,255,0.12);
+  --url-bar-border: rgba(255,255,255,0.09);
+
+  --accent-primary: #9B7FF4;
+  --accent-secondary: #7C5CE8;
+  --accent-glow: rgba(155, 127, 244, 0.2);
+
+  --text-primary: #ece7ff;
+  --text-secondary: #c0b0e8;
+  --text-muted: #6b5f90;
+
+  --border: rgba(255,255,255,0.07);
+  --glass-bg: rgba(18, 13, 30, 0.88);
+  --glass-border: rgba(255,255,255,0.08);
+  --overlay-bg: rgba(0,0,0,0.6);
+
+  --scrollbar-thumb: rgba(255,255,255,0.1);
+  --scrollbar-thumb-hover: rgba(255,255,255,0.2);
+  --split-divider: rgba(255,255,255,0.06);
+  --badge-bg: #ef4444;
+  --badge-text: #fff;
+  --favicon-placeholder-bg: rgba(255,255,255,0.08);
+  --favicon-placeholder-text: #6b5f90;
+
+  --new-tab-bg: linear-gradient(145deg, #1a1230, #130e28, #0e0a1e, #130e28, #1a1230);
+
+  --cmdk-bg: rgba(17, 13, 28, 0.99);
+  --cmdk-border: rgba(255,255,255,0.08);
+  --cmdk-input-bg: rgba(255,255,255,0.06);
+  --cmdk-item-hover: rgba(155, 127, 244, 0.12);
+  --cmdk-item-active: rgba(155, 127, 244, 0.22);
+  --cmdk-shadow: 0 24px 64px rgba(0,0,0,0.65), 0 0 0 1px rgba(255,255,255,0.06);
+}
+
+.theme-midnight {
+  --space-color: #3B82F6;
+  --space-color-rgb: 59, 130, 246;
+  --space-color-2: #2563EB;
+  --space-glow: rgba(59, 130, 246, 0.2);
+
+  --sidebar-bg: linear-gradient(170deg, #1a1f2e, #141824, #0f1320, #141824, #1a1f2e);
+  --sidebar-border: rgba(255,255,255,0.04);
+  --sidebar-text: rgba(180,195,235,0.55);
+  --sidebar-text-active: rgba(220,235,255,0.92);
+  --sidebar-hover: rgba(255,255,255,0.05);
+  --sidebar-active: rgba(59,130,246,0.18);
+  --sidebar-width: 248px;
+
+  --browser-bg: #0d1117;
+  --browser-border: rgba(255,255,255,0.05);
+  --toolbar-bg: rgba(13,17,23,0.99);
+
+  --tab-text: rgba(160,180,220,0.45);
+  --tab-hover: rgba(255,255,255,0.05);
+  --tab-active-bg: rgba(59,130,246,0.15);
+  --tab-active-text: rgba(210,228,255,0.95);
+  --tab-active-shadow: 0 1px 6px rgba(0,0,0,0.5), inset 0 0 0 0.5px rgba(59,130,246,0.3);
+
+  --pinned-tab-bg: rgba(255,255,255,0.06);
+  --pinned-tab-hover: rgba(59,130,246,0.2);
+
+  --input-bg: rgba(255,255,255,0.06);
+  --input-bg-focus: rgba(255,255,255,0.1);
+  --input-border: transparent;
+  --url-bar-bg: rgba(255,255,255,0.06);
+  --url-bar-border: rgba(255,255,255,0.07);
+
+  --accent-primary: #3B82F6;
+  --accent-secondary: #2563EB;
+  --accent-glow: rgba(59,130,246,0.2);
+
+  --text-primary: #e2eaff;
+  --text-secondary: #a8bde0;
+  --text-muted: #4a5880;
+
+  --border: rgba(255,255,255,0.06);
+  --glass-bg: rgba(13,17,23,0.9);
+  --glass-border: rgba(255,255,255,0.07);
+  --overlay-bg: rgba(0,0,0,0.65);
+
+  --scrollbar-thumb: rgba(255,255,255,0.08);
+  --scrollbar-thumb-hover: rgba(255,255,255,0.16);
+  --split-divider: rgba(255,255,255,0.05);
+  --badge-bg: #3B82F6;
+  --badge-text: #fff;
+  --favicon-placeholder-bg: rgba(255,255,255,0.07);
+  --favicon-placeholder-text: #4a5880;
+
+  --new-tab-bg: linear-gradient(145deg, #141c2f, #0f1520, #0d1117, #0f1520, #141c2f);
+  --cmdk-bg: rgba(13,17,23,0.99);
+  --cmdk-border: rgba(255,255,255,0.07);
+  --cmdk-input-bg: rgba(255,255,255,0.05);
+  --cmdk-item-hover: rgba(59,130,246,0.1);
+  --cmdk-item-active: rgba(59,130,246,0.2);
+  --cmdk-shadow: 0 24px 64px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+.theme-sakura {
+  --space-color: #D4688E;
+  --space-color-rgb: 212, 104, 142;
+  --space-color-2: #B84E74;
+  --space-glow: rgba(212, 104, 142, 0.2);
+
+  --sidebar-bg: linear-gradient(170deg, #fde8f0, #f9d9e7, #f5cfe2, #f9d9e7, #fde8f0);
+  --sidebar-border: rgba(0,0,0,0.05);
+  --sidebar-text: rgba(80, 20, 40, 0.58);
+  --sidebar-text-active: rgba(50, 5, 20, 0.9);
+  --sidebar-hover: rgba(212,104,142,0.08);
+  --sidebar-active: rgba(255,255,255,0.80);
+  --sidebar-width: 248px;
+
+  --browser-bg: #fff5f8;
+  --browser-border: rgba(0,0,0,0.06);
+  --toolbar-bg: rgba(255,250,252,0.98);
+
+  --tab-text: rgba(80,20,40,0.5);
+  --tab-hover: rgba(212,104,142,0.08);
+  --tab-active-bg: rgba(255,255,255,0.90);
+  --tab-active-text: rgba(50,5,20,0.88);
+  --tab-active-shadow: 0 1px 6px rgba(212,104,142,0.14), inset 0 0 0 0.5px rgba(255,255,255,0.8);
+
+  --pinned-tab-bg: rgba(255,255,255,0.58);
+  --pinned-tab-hover: rgba(255,255,255,0.92);
+
+  --input-bg: rgba(212,104,142,0.06);
+  --input-bg-focus: rgba(255,255,255,0.96);
+  --input-border: transparent;
+  --url-bar-bg: rgba(255,245,248,0.88);
+  --url-bar-border: rgba(212,104,142,0.12);
+
+  --accent-primary: #D4688E;
+  --accent-secondary: #B84E74;
+  --accent-glow: rgba(212,104,142,0.22);
+
+  --text-primary: #2a0812;
+  --text-secondary: #6b2040;
+  --text-muted: #c48aa0;
+
+  --border: rgba(0,0,0,0.06);
+  --glass-bg: rgba(255,245,248,0.84);
+  --glass-border: rgba(255,255,255,0.62);
+  --overlay-bg: rgba(40,5,20,0.28);
+
+  --scrollbar-thumb: rgba(212,104,142,0.16);
+  --scrollbar-thumb-hover: rgba(212,104,142,0.30);
+  --split-divider: rgba(212,104,142,0.09);
+  --badge-bg: #D4688E;
+  --badge-text: #fff;
+  --favicon-placeholder-bg: rgba(212,104,142,0.09);
+  --favicon-placeholder-text: #c48aa0;
+
+  --new-tab-bg: linear-gradient(145deg, #fef0f5, #fbe2ec, #f8d8e7, #fde8f2, #fef0f5);
+  --new-tab-bg-size: 300% 300%;
+
+  --cmdk-bg: rgba(255,252,254,0.99);
+  --cmdk-border: rgba(0,0,0,0.07);
+  --cmdk-input-bg: rgba(212,104,142,0.05);
+  --cmdk-item-hover: rgba(212,104,142,0.08);
+  --cmdk-item-active: rgba(212,104,142,0.15);
+  --cmdk-shadow: 0 20px 60px rgba(212,104,142,0.14), 0 0 0 1px rgba(0,0,0,0.04);
+}
+
+.theme-rose {
+  --space-color: #E8567A;
+  --space-color-rgb: 232, 86, 122;
+  --space-color-2: #C73F62;
+  --space-glow: rgba(232, 86, 122, 0.22);
+
+  --sidebar-bg: linear-gradient(170deg, #fdf0f3, #fae8ed, #f7e0e8, #fae8ed, #fdf0f3);
+  --sidebar-border: rgba(0,0,0,0.055);
+  --sidebar-text: rgba(60,20,30,0.6);
+  --sidebar-text-active: rgba(30,5,15,0.9);
+  --sidebar-hover: rgba(232,86,122,0.07);
+  --sidebar-active: rgba(255,255,255,0.78);
+  --sidebar-width: 248px;
+
+  --browser-bg: #fff8f9;
+  --browser-border: rgba(0,0,0,0.06);
+  --toolbar-bg: rgba(255,252,253,0.98);
+
+  --tab-text: rgba(60,20,30,0.5);
+  --tab-hover: rgba(232,86,122,0.07);
+  --tab-active-bg: rgba(255,255,255,0.88);
+  --tab-active-text: rgba(30,5,15,0.88);
+  --tab-active-shadow: 0 1px 6px rgba(232,86,122,0.12), inset 0 0 0 0.5px rgba(255,255,255,0.8);
+
+  --pinned-tab-bg: rgba(255,255,255,0.55);
+  --pinned-tab-hover: rgba(255,255,255,0.9);
+
+  --input-bg: rgba(232,86,122,0.06);
+  --input-bg-focus: rgba(255,255,255,0.95);
+  --input-border: transparent;
+  --url-bar-bg: rgba(255,248,250,0.85);
+  --url-bar-border: rgba(232,86,122,0.1);
+
+  --accent-primary: #E8567A;
+  --accent-secondary: #C73F62;
+  --accent-glow: rgba(232,86,122,0.22);
+
+  --text-primary: #200d12;
+  --text-secondary: #5a2535;
+  --text-muted: #c490a0;
+
+  --border: rgba(0,0,0,0.065);
+  --glass-bg: rgba(255,248,250,0.82);
+  --glass-border: rgba(255,255,255,0.6);
+  --overlay-bg: rgba(30,5,15,0.3);
+
+  --scrollbar-thumb: rgba(232,86,122,0.15);
+  --scrollbar-thumb-hover: rgba(232,86,122,0.28);
+  --split-divider: rgba(232,86,122,0.08);
+  --badge-bg: #E8567A;
+  --badge-text: #fff;
+  --favicon-placeholder-bg: rgba(232,86,122,0.08);
+  --favicon-placeholder-text: #c490a0;
+
+  --new-tab-bg: linear-gradient(145deg, #fff0f3, #fde8ed, #faddea, #fde8ed, #fff0f3);
+  --cmdk-bg: rgba(255,252,253,0.99);
+  --cmdk-border: rgba(0,0,0,0.07);
+  --cmdk-input-bg: rgba(232,86,122,0.05);
+  --cmdk-item-hover: rgba(232,86,122,0.07);
+  --cmdk-item-active: rgba(232,86,122,0.13);
+  --cmdk-shadow: 0 20px 60px rgba(232,86,122,0.12), 0 0 0 1px rgba(0,0,0,0.04);
+}

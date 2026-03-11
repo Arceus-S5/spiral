@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 320px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #1a1a2e;
+      color: #e8e8f0;
+      padding: 16px;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .logo { color: #0fa3f7; font-size: 18px; }
+    .title { font-size: 14px; font-weight: 600; }
+    textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      color: #e8e8f0;
+      font-size: 13px;
+      padding: 10px;
+      resize: vertical;
+      min-height: 80px;
+      font-family: inherit;
+      outline: none;
+    }
+    textarea:focus { border-color: rgba(15,163,247,0.5); }
+    .lang-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 10px 0;
+    }
+    select {
+      flex: 1;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      color: #e8e8f0;
+      font-size: 12px;
+      padding: 6px 8px;
+      outline: none;
+    }
+    .swap-btn {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #888;
+      border-radius: 6px;
+      padding: 6px 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .translate-btn {
+      width: 100%;
+      background: #0fa3f7;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: opacity 0.1s;
+    }
+    .translate-btn:hover { opacity: 0.85; }
+    .translate-btn:disabled { opacity: 0.5; cursor: default; }
+    .result {
+      margin-top: 12px;
+      background: rgba(15,163,247,0.08);
+      border: 1px solid rgba(15,163,247,0.2);
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 13px;
+      line-height: 1.5;
+      min-height: 60px;
+      word-break: break-word;
+    }
+    .result-actions {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .copy-btn {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #888;
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 11px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .api-section {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .api-label { font-size: 11px; color: #888; margin-bottom: 6px; }
+    .api-input {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      color: #e8e8f0;
+      font-size: 12px;
+      padding: 6px 8px;
+      font-family: inherit;
+      outline: none;
+    }
+    .api-save {
+      margin-top: 6px;
+      font-size: 11px;
+      color: #0fa3f7;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .api-hint { font-size: 10px; color: #666; margin-top: 4px; }
+    .error { color: #f87171; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <span class="logo">🔵</span>
+    <span class="title">DeepL Translate</span>
+  </div>
+
+  <textarea id="input" placeholder="翻訳するテキストを入力..."></textarea>
+
+  <div class="lang-row">
+    <select id="sourceLang">
+      <option value="auto">自動検出</option>
+      <option value="EN">英語</option>
+      <option value="JA">日本語</option>
+      <option value="ZH">中国語</option>
+      <option value="KO">韓国語</option>
+      <option value="DE">ドイツ語</option>
+      <option value="FR">フランス語</option>
+      <option value="ES">スペイン語</option>
+    </select>
+    <button class="swap-btn" id="swap">⇄</button>
+    <select id="targetLang">
+      <option value="JA">日本語</option>
+      <option value="EN-US">英語(米)</option>
+      <option value="ZH">中国語</option>
+      <option value="KO">韓国語</option>
+      <option value="DE">ドイツ語</option>
+      <option value="FR">フランス語</option>
+      <option value="ES">スペイン語</option>
+    </select>
+  </div>
+
+  <button class="translate-btn" id="translateBtn">翻訳</button>
+
+  <div class="result" id="result" style="display:none"></div>
+  <div class="result-actions" id="resultActions" style="display:none">
+    <button class="copy-btn" id="copyBtn">コピー</button>
+    <a id="deeplLink" target="_blank" style="font-size:11px;color:#888;padding:4px 0;text-decoration:none">DeepLで開く →</a>
+  </div>
+
+  <div class="api-section">
+    <div class="api-label">DeepL API キー（任意・無料プラン対応）</div>
+    <input class="api-input" id="apiKey" type="password" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx:fx">
+    <button class="api-save" id="saveKey">保存</button>
+    <div class="api-hint">APIキーなしでもDeepLウェブへのリンクは使えます</div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
